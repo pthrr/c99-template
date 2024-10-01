@@ -1,10 +1,24 @@
 #include <processing.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <iso646.h>
+#include <assert.h>
+
+void handle_exit(int sig)
+{
+    printf("Handling signal: %i\n", sig);
+    exit(1);
+}
 
 int main(int argc, char **argv)
 {
-    int opt = 0;
+    signal(SIGINT, handle_exit);
+    signal(SIGTERM, handle_exit);
+    signal(SIGABRT, handle_exit);
+
+    int opt;
 
     for (; (opt = getopt(argc, argv, "hv")) != -1;) {
         switch (opt) {
