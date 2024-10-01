@@ -87,9 +87,9 @@ tasks:
   run:
     cmds:
       - task: build
-      - cmd: build/Release/src/my_project
+      - cmd: build/Release/src/my_project {{.CLI_ARGS}}
 
   run_debug:
     cmds:
       - task: build_debug
-      - cmd: build/Debug/src/my_project
+      - cmd: build/Debug/src/my_project {{.CLI_ARGS}}
